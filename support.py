@@ -1,5 +1,6 @@
 from csv import reader
 
+
 def import_csv_layout(path):
     terrain_map = []
     with open(path) as level_map:
@@ -7,4 +8,3 @@ def import_csv_layout(path):
         for row in layout:
             terrain_map.append(list(row))
         return terrain_map
-
