@@ -4,6 +4,7 @@ from tile import Tile
 from player import Player
 from debug import debug
 from support import *
+from random import choice
 
 
 class Level:
@@ -21,7 +22,13 @@ class Level:
 
 	def create_map(self):
 		layouts = {
-			'boundary': import_csv_layout('assets/map/map_FloorBlocks.csv')
+			'boundary': import_csv_layout('assets/map/map_FloorBlocks.csv'),
+			'grass': import_csv_layout('assets/map/map_Grass.csv'),
+			'object': import_csv_layout('assets/map/map_Objects.csv'),
+		}
+
+		graphics = {
+			'grass': import_folder('assets/images/grass')
 		}
 
 		for style, layout in layouts.items():
@@ -32,6 +39,13 @@ class Level:
 						y = row_index * TILE_SIZE
 						if style == 'boundary':
 							Tile((x, y), self.obstacle_sprites, 'invisible')
+						if style == 'grass':
+							# create a grass tile
+							random_grass_image = choice(graphics['grass'])
+							Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'grass', random_grass_image)
+						if style == 'object':
+							# create an object tile
+							pass
 
 				# if col == 'x':
 					# Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
