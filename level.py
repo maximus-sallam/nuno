@@ -31,12 +31,12 @@ class Level:
 						x = col_index * TILE_SIZE
 						y = row_index * TILE_SIZE
 						if style == 'boundary':
-							Tile((x, y), [self.obstacle_sprites], 'invisible')
+							Tile((x, y), self.obstacle_sprites, 'invisible')
 
-		#		if col == 'x':
-		#			Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
-		#		if col == 'p':
-		#			self.player = Player((x, y), [self.visible_sprites], self.obstacle_sprites)
+				# if col == 'x':
+					# Tile((x, y), [self.visible_sprites, self.obstacle_sprites])
+				# if col == 'p':
+					# self.player = Player((x, y), [self.visible_sprites], self.obstacle_sprites)
 
 		self.player = Player((2000, 1430), [self.visible_sprites], self.obstacle_sprites)
 
