@@ -73,7 +73,8 @@ class Player(pygame.sprite.Sprite):
 
 		# idle status
 		if self.direction.x == 0 and self.direction.y == 0:
-			self.status = self.status + '_idle'
+			if 'idle' not in self.status:
+				self.status = self.status + '_idle'
 
 	def move(self, speed):
 		if self.direction.magnitude() != 0:
@@ -112,5 +113,5 @@ class Player(pygame.sprite.Sprite):
 	def update(self):
 		self.input()
 		self.cooldowns()
-		# self.get_status()
+		self.get_status()
 		self.move(self.speed)
