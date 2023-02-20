@@ -11,6 +11,8 @@ class Player(pygame.sprite.Sprite):
 		# graphics setup
 		self.import_player_assets()
 		self.status = 'down'
+		self.frame_index = 0
+		self.animation_speed = 0.15
 
 		# movement
 		self.direction = pygame.math.Vector2()
@@ -76,15 +78,19 @@ class Player(pygame.sprite.Sprite):
 			if 'idle' not in self.status and 'attack' not in self.status:
 				self.status = self.status + '_idle'
 
+		# attack status
 		if self.attacking:
 			self.direction.x = 0
 			self.direction.y = 0
 			if 'attack' not in self.status:
 				if 'idle' in self.status:
+
 					# overwrite idle
 					self.status = self.status.replace('_idle', '_attack')
 				else:
 					self.status = self.status + '_attack'
+
+		# return to idle
 		else:
 			if 'attack' in self.status:
 				self.status = self.status.replace('_attack', '_idle')
@@ -123,8 +129,21 @@ class Player(pygame.sprite.Sprite):
 			if current_time - self.attack_time >= self.attack_cooldown:
 				self.attacking = False
 
+	def animate(self):
+		animation = self.animations[self.status]
+
+		# loop over frame index
+		self.frame_index += self.animation_speed
+		if self.frame_index >= len(animation):
+			self.frame_index = 0
+
+		# set directional sprites
+		self.image = animation[int(self.frame_index)]
+		self.rect = self.image.get_rect(center=self.hitbox.center)
+
 	def update(self):
 		self.input()
 		self.cooldowns()
 		self.get_status()
+		self.animate()
 		self.move(self.speed)
