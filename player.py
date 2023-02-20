@@ -2,7 +2,7 @@ import pygame
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-	def __init__(self, pos, groups, obstacle_sprites):
+	def __init__(self, pos, groups, obstacle_sprites, create_attack):
 		super().__init__(groups)
 		self.image = pygame.image.load('assets/test/player.png').convert_alpha()
 		self.rect = self.image.get_rect(topleft=pos)
@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
 		# movement
 		self.direction = pygame.math.Vector2()
 		self.speed = 5
+		self.create_attack = create_attack
 
 		# attack timer
 		self.attacking = False
@@ -64,6 +65,7 @@ class Player(pygame.sprite.Sprite):
 			if keys[pygame.K_SPACE]:
 				self.attacking = True
 				self.attack_time = pygame.time.get_ticks()
+				self.create_attack()
 				print('Attack!')
 
 			# magic input
