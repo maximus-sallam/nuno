@@ -1,5 +1,7 @@
 import pygame
+from settings import *
 from support import import_folder
+
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, pos, groups, obstacle_sprites, create_attack):
@@ -17,7 +19,6 @@ class Player(pygame.sprite.Sprite):
 		# movement
 		self.direction = pygame.math.Vector2()
 		self.speed = 5
-		self.create_attack = create_attack
 
 		# attack timer
 		self.attacking = False
@@ -25,6 +26,11 @@ class Player(pygame.sprite.Sprite):
 		self.attack_time = None
 
 		self.obstacle_sprites = obstacle_sprites
+
+		# weapon
+		self.create_attack = create_attack
+		self.weapon_index = 0
+		self.weapon = list(weapon_data.keys())[self.weapon_index]
 
 	def import_player_assets(self):
 		character_patch = 'assets/images/player/'

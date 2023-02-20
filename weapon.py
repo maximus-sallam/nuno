@@ -8,7 +8,8 @@ class Weapon(pygame.sprite.Sprite):
         print(direction)
 
         # graphic
-        self.image = pygame.Surface((40, 40))
+        full_path = f'assets/images/weapons/{player.weapon}/{direction}.png'
+        self.image = pygame.image.load(full_path).convert_alpha()
 
         # placement
         if direction == 'up':
