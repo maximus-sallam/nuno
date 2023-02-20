@@ -73,8 +73,21 @@ class Player(pygame.sprite.Sprite):
 
 		# idle status
 		if self.direction.x == 0 and self.direction.y == 0:
-			if 'idle' not in self.status:
+			if 'idle' not in self.status and 'attack' not in self.status:
 				self.status = self.status + '_idle'
+
+		if self.attacking:
+			self.direction.x = 0
+			self.direction.y = 0
+			if 'attack' not in self.status:
+				if 'idle' in self.status:
+					# overwrite idle
+					self.status = self.status.replace('_idle', '_attack')
+				else:
+					self.status = self.status + '_attack'
+		else:
+			if 'attack' in self.status:
+				self.status = self.status.replace('_attack', '_idle')
 
 	def move(self, speed):
 		if self.direction.magnitude() != 0:
