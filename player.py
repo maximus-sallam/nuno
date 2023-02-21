@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
 		self.health = self.stats['health'] * 0.8
 		self.energy = self.stats['energy'] * 0.5
 		self.exp = 123
-		self.speed = self.stats['speed'] * 5
+		self.speed = self.stats['speed']
 
 	def import_player_assets(self):
 		character_patch = 'assets/images/player/'
