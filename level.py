@@ -53,7 +53,8 @@ class Level:
 							surf = graphics['objects'][int(col)]
 							Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'objects', surf)
 
-		self.player = Player((2000, 1400), self.visible_sprites, self.obstacle_sprites, self.create_attack, self.destroy_attack)
+		self.player = Player((2000, 1400), self.visible_sprites, self.obstacle_sprites,
+							self.create_attack, self.destroy_attack)
 
 	def create_attack(self):
 		self.current_attack = Weapon(self.player, self.visible_sprites)
@@ -67,8 +68,8 @@ class Level:
 		# update and draw the game
 		self.visible_sprites.custom_draw(self.player)
 		self.visible_sprites.update()
-		#  debug(self.player.direction)
-		debug(self.player.status)
+		# debug(self.player.direction)
+		# debug(self.player.status)
 
 
 class YSortCameraGroup(pygame.sprite.Group):
