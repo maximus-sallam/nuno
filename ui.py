@@ -27,6 +27,20 @@ class UI:
         pygame.draw.rect(self.display_surface, color, current_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
 
+    def show_exp(self, exp):
+        # anti-aliasing is False because we're using pixel art.
+        text_surf = self.font.render(str(int(exp)), False, TEXT_COLOR)
+        x = self.display_surface.get_size()[0] - 20
+        y = self.display_surface.get_size()[1] - 20
+        text_rect = text_surf.get_rect(bottomright=(x, y))
+
+        pygame.draw.rect(self.display_surface, UI_BG_COLOR, text_rect.inflate(20, 20))
+        self.display_surface.blit(text_surf, text_rect)
+        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20, 20), 2)
+
+
     def display(self, player):
         self.show_bar(player.health, player.stats['health'], self.health_bar_rect, HEALTH_COLOR)
         self.show_bar(player.energy, player.stats['energy'], self.energy_bar_rect, ENERGY_COLOR)
+
+        self.show_exp(player.exp)
