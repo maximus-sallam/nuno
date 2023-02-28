@@ -49,4 +49,8 @@ class UI:
 
         self.show_exp(player.exp)
 
+        # weapon
         self.selection_box(10, 610)
+        # magic
+        self.selection_box(120, 610)
+
