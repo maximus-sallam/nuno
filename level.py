@@ -2,7 +2,6 @@ import pygame
 from settings import *
 from tile import Tile
 from player import Player
-from debug import debug
 from support import *
 from random import choice
 from weapon import Weapon
