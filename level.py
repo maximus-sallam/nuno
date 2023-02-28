@@ -47,18 +47,35 @@ class Level:
 						x = col_index * TILE_SIZE
 						y = row_index * TILE_SIZE
 						if style == 'boundary':
-							Tile((x, y), self.obstacle_sprites, 'invisible')
+							Tile(
+								(x, y),
+								self.obstacle_sprites,
+								'invisible'
+							)
 						if style == 'grass':
 							# create a grass tile
 							random_grass_image = choice(graphics['grass'])
-							Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'grass', random_grass_image)
+							Tile(
+								(x, y),
+								[self.visible_sprites, self.obstacle_sprites],
+								'grass', random_grass_image
+							)
 						if style == 'object':
 							# create an object tile
 							surf = graphics['objects'][int(col)]
-							Tile((x, y), [self.visible_sprites, self.obstacle_sprites], 'objects', surf)
+							Tile(
+								(x, y),
+								[self.visible_sprites, self.obstacle_sprites],
+								'objects', surf
+							)
 
-		self.player = Player((2000, 1400), self.visible_sprites, self.obstacle_sprites,
-							self.create_attack, self.destroy_attack)
+		self.player = Player(
+			(2000, 1400),
+			self.visible_sprites,
+			self.obstacle_sprites,
+			self.create_attack,
+			self.destroy_attack
+		)
 
 	def create_attack(self):
 		self.current_attack = Weapon(self.player, self.visible_sprites)
