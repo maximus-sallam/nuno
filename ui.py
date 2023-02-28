@@ -45,14 +45,17 @@ class UI:
         self.display_surface.blit(text_surf, text_rect)
         pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, text_rect.inflate(20, 20), 3)
 
-    def selection_box(self, left, top):
+    def selection_box(self, left, top, has_switched):
         bg_rect = pygame.Rect(left, top, ITEM_BOX_SIZE, ITEM_BOX_SIZE)
         pygame.draw.rect(self.display_surface, UI_BG_COLOR, bg_rect)
-        pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
+        if has_switched:
+            pygame.draw.rect(self.display_surface, UI_BORDER_COLOR_ACTIVE, bg_rect, 3)
+        else:
+            pygame.draw.rect(self.display_surface, UI_BORDER_COLOR, bg_rect, 3)
         return bg_rect
 
-    def weapon_overlay(self, weapon_index):
-        bg_rect = self.selection_box(10, 610)
+    def weapon_overlay(self, weapon_index, has_switched):
+        bg_rect = self.selection_box(10, 610, has_switched)
         weapon_surf = self.weapon_graphics[weapon_index]
         weapon_rect = weapon_surf.get_rect(center=bg_rect.center)
 
@@ -65,7 +68,7 @@ class UI:
         self.show_exp(player.exp)
 
         # weapon
-        self.weapon_overlay(player.weapon_index)
+        self.weapon_overlay(player.weapon_index, not player.can_switch_weapon)
 
         # magic
-        self.selection_box(120, 610)
+        #self.selection_box(120, 610)

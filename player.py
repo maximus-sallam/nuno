@@ -105,7 +105,6 @@ class Player(pygame.sprite.Sprite):
 					self.weapon_index = 0
 
 				self.weapon = list(weapon_data.keys())[self.weapon_index]
-				print('Cycle!')
 
 	def get_status(self):
 
