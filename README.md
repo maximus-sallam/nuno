@@ -1,5 +1,15 @@
 ### Project Proposal: "Quest for the Nuno"
 
+<div align="center">
+  <img src="assets/demo/1.png" alt="Maximus Sallam Banner">
+</div>
+<div align="center">
+  <img src="assets/demo/2.png" alt="Maximus Sallam Banner">
+</div>
+<div align="center">
+  <img src="assets/demo/3.png" alt="Maximus Sallam Banner">
+</div>
+
 **Working Title:** Quest for the Nuno
 
 **Target Platform(s):** PlayStation 5, PlayStation 4, and PlayStation Store (PSN) Digital Release
